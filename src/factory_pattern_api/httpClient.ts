@@ -16,7 +16,7 @@ type AxiosErrorHandler = (error: AxiosError) => void | Promise<never>;
 /**
  * 리프레시 무한 루프 방지용
  *
- * [예상 요류 시나리오]
+ * [예상 오류 시나리오]
  *
  * - 요청 → 401
  *
