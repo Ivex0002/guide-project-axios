@@ -1,7 +1,7 @@
 import { AxiosInstanceFactory } from "./AxiosInstanceFactory";
 import { TokenManager } from "./tokenManager";
 
-const BASE_URL = "https://auth.example.com/";
+const BASE_URL = "https://oz.example.com/";
 const EXTERNAL_URL = "https://external.api.com/";
 
 // 토큰 매니저 생성
