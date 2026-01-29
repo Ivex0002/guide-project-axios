@@ -3,7 +3,7 @@ import axios from "axios";
 const BASE_URL = "https://api.example.com/";
 const TIMEOUT = 30000;
 
-export const axiosInstance = axios.create({
+export const simpleInstance = axios.create({
   // API 서버의 공통 URL
   // 운영중인 서버가 가지고 있는 도메인에 따라 다름
   baseURL: BASE_URL,

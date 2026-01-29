@@ -1,4 +1,4 @@
-import { axiosInstance } from "../instance";
+import { simpleInstance } from "../instance";
 
 export interface User {
   id: number;
@@ -6,6 +6,6 @@ export interface User {
 }
 
 export const getUser = async (): Promise<User> => {
-  const { data } = await axiosInstance.get<User>("/user");
+  const { data } = await simpleInstance.get<User>("/user");
   return data;
 };

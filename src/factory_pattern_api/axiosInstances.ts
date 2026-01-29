@@ -1,4 +1,4 @@
-import { AxiosInstanceFactory } from "./createAxiosInstance";
+import { AxiosInstanceFactory } from "./AxiosInstanceFactory";
 import { TokenManager } from "./tokenManager";
 
 const BASE_URL = "https://auth.example.com/";
