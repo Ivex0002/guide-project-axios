@@ -1,15 +1,17 @@
-import { createAxiosInstance } from "./createAxiosInstance";
+import { AxiosInstanceFactory } from "./createAxiosInstance";
+import { TokenManager } from "./tokenManager";
 
-export const defaultAPI = createAxiosInstance("default");
-export const authAPI = createAxiosInstance("auth");
-export const externalAPI = createAxiosInstance("external");
+const BASE_URL = "https://auth.example.com/";
+const EXTERNAL_URL = "https://external.api.com/";
 
-// auth 전용 인터셉터
-// token이 있다면 헤더에 자동으로 삽입
-authAPI.interceptors.request.use((config) => {
-  const token = localStorage.getItem("accessToken");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
+// 토큰 매니저 생성
+// 인스턴스들은 모두 동일한 토큰을 참조하도록 보장
+const tokenManager = new TokenManager();
+
+// 인스턴스들을 생성하는 클래스(팩토리 패턴)
+const apiFactory = new AxiosInstanceFactory(tokenManager);
+
+// 팩토리를 통해 생성된 인스턴스들
+export const defaultAPI = apiFactory.create("default", BASE_URL);
+export const authAPI = apiFactory.create("auth", BASE_URL);
+export const externalAPI = apiFactory.create("external", EXTERNAL_URL);
