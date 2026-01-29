@@ -27,6 +27,8 @@ export class AxiosInstanceFactory {
     return instance;
   }
 
+  // create() 함수에서 사용할 내부 함수들
+
   /**
    * 인스턴스에 인터셉터를 구성하는 역할
    */
@@ -41,7 +43,6 @@ export class AxiosInstanceFactory {
   }
 
   /**
-   * create() 함수에서 사용할 내부 함수
    * 분기처리와 실제 생성을 담당
    */
   private createAxios(type: AxiosType, baseURL: string): AxiosInstance {
