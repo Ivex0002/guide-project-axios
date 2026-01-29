@@ -1,34 +1,27 @@
-import { useState } from "react";
-import { httpClient } from "./api/api";
+import "./app.css";
+import { RequestUI } from "./RequestUI";
 
-const HTTP_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE"] as const;
+// 단일 생성된 인스턴스
+import { axiosInstance } from "./simple_pattern_api/instance";
 
-type HttpMethodOption = (typeof HTTP_METHODS)[number];
+// 팩토리 패턴으로 생성된 인스턴스들
+import { defaultAPI } from "./factory_pattern_api/axiosInstances";
+import { authAPI } from "./factory_pattern_api/axiosInstances";
+import { externalAPI } from "./factory_pattern_api/axiosInstances";
+
+const apiInstances = [
+  { name: "axiosInstance", instance: axiosInstance },
+  { name: "defaultAPI", instance: defaultAPI },
+  { name: "authAPI", instance: authAPI },
+  { name: "externalAPI", instance: externalAPI },
+];
 
 export function App() {
-  const [url, setUrl] = useState<string>("");
-  const [method, setMethod] = useState<HttpMethodOption>("GET");
-
-  const handleReq = () => {
-    httpClient.request(url, method);
-  };
   return (
     <>
-      <textarea
-        onChange={(e) => setUrl(e.target.value)}
-        placeholder="요청 주소를 입력해주세요"
-      ></textarea>
-      <select
-        value={method}
-        onChange={(e) => setMethod(e.target.value as HttpMethodOption)}
-      >
-        {HTTP_METHODS.map((m) => (
-          <option key={m} value={m}>
-            {m}
-          </option>
-        ))}
-      </select>
-      <button onClick={handleReq}>req</button>
+      {apiInstances.map(({ name, instance }) => (
+        <RequestUI key={name} name={name} instance={instance} />
+      ))}
     </>
   );
 }
