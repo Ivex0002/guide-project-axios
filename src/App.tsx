@@ -5,9 +5,11 @@ import { RequestUI } from "./RequestUI";
 import { axiosInstance } from "./simple_pattern_api/instance";
 
 // 팩토리 패턴으로 생성된 인스턴스들
-import { defaultAPI } from "./factory_pattern_api/axiosInstances";
-import { authAPI } from "./factory_pattern_api/axiosInstances";
-import { externalAPI } from "./factory_pattern_api/axiosInstances";
+import {
+  authAPI,
+  defaultAPI,
+  externalAPI,
+} from "./factory_pattern_api/axiosInstances";
 
 const apiInstances = [
   { name: "axiosInstance", instance: axiosInstance },
